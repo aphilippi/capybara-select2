@@ -4,6 +4,8 @@ module Capybara
       def select2_tag(value, options = {})
         select2_container = if options.key? :css
                               find(:css, options[:css])
+                            elsif options.key? :xpath
+                              find(:xpath, options[:xpath])
                             else
                               select_name = options[:from]
                               find('label', text: select_name).find(:xpath, '..').find('.select2-container')
